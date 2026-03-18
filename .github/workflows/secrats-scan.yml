@@ -1,0 +1,20 @@
+#API keys, sensitive data, credentials
+#gitleaks
+name: Secrats Scan
+
+on: 
+    workflow_call:
+    
+jobs:
+    screats-scan:
+        runs-on: ubuntu latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+
+            - name: Run Gitleaks Scanner
+              uses: gitleaks/gitleaks-action@v2
+              env:
+                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} #Github action manage it , you dont have to create 
