@@ -1,0 +1,14 @@
+name: DevSecOpes end to end pipeline
+
+on:
+    workflow_dispatch:
+
+jobs:
+    code-quality:
+        uses: ./.github/workflows/code-quality.yml
+
+    secrats-scan:
+         uses: ./.github/workflows/secrats-scan.yml
+
+    dependancy-scan:
+         uses: ./.github/workflows/dependancy-scan.yml
