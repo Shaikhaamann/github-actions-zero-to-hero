@@ -1,7 +1,8 @@
 name: DevSecOpes end to end pipeline
 
 on:
-    workflow_call:
+    push:
+        branches: [main]   
 
 jobs:
     # CI (continous integration with security scanning)
