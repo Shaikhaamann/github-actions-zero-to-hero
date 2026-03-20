@@ -10,7 +10,7 @@ jobs:
     dependancy-check:
         runs-on: ubuntu-latest
         steps:
-            - name: code C heckout
+            - name: code Checkout
               uses: actions/checkout@v4
 
             - name: setup python 3.12
