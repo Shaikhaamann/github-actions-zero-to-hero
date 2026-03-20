@@ -22,3 +22,4 @@ jobs:
     build:
         needs: [code-quality, secrats-scan, dependancy-scan, docker-scan]
         uses: ./.github/workflows/docker-build-push.yml
+        secrets: inherit
