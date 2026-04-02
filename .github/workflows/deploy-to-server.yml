@@ -8,6 +8,11 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+
+        env:
+            DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+            DOCKER_TAG: ${{ github.event.workflow_run.head_sha }}
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -41,7 +46,5 @@ jobs:
                     echo: "Running app"
                     sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
                     sudo usermod -aG docker $USER && newgrp docker
-                    export DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
-                    export DOCKER_TAG: ${{ github.event.workflow_run.head_sha }}
-                    echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u  ${{ secrets.DOCKERHUB_USER }} --password-stdin
+                    echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u  ${{ vars.DOCKERHUB_USER }} --password-stdin
                     cd ~/devops && docker compose up -d
